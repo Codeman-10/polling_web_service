@@ -3,8 +3,10 @@ const { polls } = require("../controller/poll.controller");
 function initializeSocket(server) {
   const io = new Server(server, {
     cors: {
-      origin: "https://react-poll-app.onrender.com/",
+      origin: "https://react-poll-app.onrender.com",
       methods: ["GET", "POST"],
+      allowedHeaders: ["my-custom-header"],
+      credentials: true
     },
   });
 
