@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { createPoll, getAllPolls } = require('../controller/poll.controller');
+const { createPoll, getAllPolls, deletePoll } = require('../controller/poll.controller');
+
+
+router.delete('/', deletePoll);
 
 router.post('/', createPoll);
 

@@ -12,6 +12,14 @@ const createPoll = (req, res) => {
   res.status(201).send(poll);
 };
 
+const deletePoll = (req, res) => {
+  const id = req.body.pollId;
+
+  const idx = polls.findIndex((v) => v.id === id);
+  polls.splice(idx, 1);
+  res.status(201).send({ msg: "success" });
+};
+
 const getAllPolls = (req, res) => {
   res.json(polls);
 };
@@ -19,5 +27,6 @@ const getAllPolls = (req, res) => {
 module.exports = {
   createPoll,
   getAllPolls,
+  deletePoll,
   polls,
 };
