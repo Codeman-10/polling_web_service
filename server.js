@@ -6,13 +6,23 @@ const path = require("path");
 const { initializeSocket } = require("./socket/socket");
 const pollsRouter = require("./routes/poll.route");
 require('dotenv').config();
+// List of allowed origins without trailing slashes
+const allowedOrigins = ['https://react-poll-app.onrender.com', 'http://localhost:5173'];
+
 const corsOptions = {
-  origin: 'https://react-poll-app.onrender.com',
-  origin: 'http://localhost:5173/',
+  origin: function (origin, callback) {
+    // Check if the origin is in the allowed origins list or if there's no origin (like in server-to-server requests)
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204
 };
+
 const app = express();
 const server = http.createServer(app);
 
