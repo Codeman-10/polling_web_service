@@ -15,7 +15,7 @@ const io = initializeSocket(server);
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "../client/dist")));
+// app.use(express.static(path.join(__dirname, "../client/dist")));
 
 app.use("/api/polls", (req, res, next) => {
   console.log("Middleware: Attaching io instance to request object");
@@ -23,11 +23,11 @@ app.use("/api/polls", (req, res, next) => {
   next();
 }, pollsRouter);
 
-const indexPath = path.join(__dirname, '../client/dist/index.html');
-app.get("/", (req, res) => {
-  console.log("Logger home: Serving index.html");
-  res.sendFile(indexPath);
-});
+// const indexPath = path.join(__dirname, '../client/dist/index.html');
+// app.get("/", (req, res) => {
+//   console.log("Logger home: Serving index.html");
+//   res.sendFile(indexPath);
+// });
 
 const PORT = process.env.PORT;
 
