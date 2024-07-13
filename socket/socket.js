@@ -1,15 +1,22 @@
 const { Server } = require("socket.io");
 const { polls } = require("../controller/poll.controller");
+const { allowedOrigins } = require("../server");
 function initializeSocket(server) {
   const io = new Server(server, {
     cors: {
-      origin: "https://react-poll-app.onrender.com",
-      origin: "http://localhost:5173/",
-      methods: ["GET", "POST"],
-      allowedHeaders: ["my-custom-header"],
-      credentials: true
+      origin: (origin, callback) => {
+        
+        if (allowedOrigins.includes(origin) || !origin) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
+      methods: ['GET', 'POST'],
+      credentials: true,
     },
   });
+  
 
 
   io.on("connection", (socket) => {
