@@ -7,7 +7,7 @@ const { initializeSocket } = require("./socket/socket");
 const pollsRouter = require("./routes/poll.route");
 require('dotenv').config();
 // List of allowed origins without trailing slashes
-export const allowedOrigins = ['https://react-poll-app.onrender.com', 'http://localhost:5173'];
+const allowedOrigins = ['https://react-poll-app.onrender.com', 'http://localhost:5173'];
 
 const corsOptions = {
   origin: function (origin, callback) {
