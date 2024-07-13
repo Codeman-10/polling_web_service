@@ -4,6 +4,7 @@ function initializeSocket(server) {
   const io = new Server(server, {
     cors: {
       origin: "https://react-poll-app.onrender.com",
+      origin: "http://localhost:5173/",
       methods: ["GET", "POST"],
       allowedHeaders: ["my-custom-header"],
       credentials: true

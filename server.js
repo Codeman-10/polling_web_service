@@ -8,6 +8,7 @@ const pollsRouter = require("./routes/poll.route");
 require('dotenv').config();
 const corsOptions = {
   origin: 'https://react-poll-app.onrender.com',
+  origin: 'http://localhost:5173/',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204
