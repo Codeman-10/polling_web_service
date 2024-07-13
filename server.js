@@ -6,14 +6,19 @@ const path = require("path");
 const { initializeSocket } = require("./socket/socket");
 const pollsRouter = require("./routes/poll.route");
 require('dotenv').config();
-
+const corsOptions = {
+  origin: 'https://react-poll-app.onrender.com',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204
+};
 const app = express();
 const server = http.createServer(app);
 
 // Initialize socket.io
 const io = initializeSocket(server);
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 // app.use(express.static(path.join(__dirname, "../client/dist")));
 
